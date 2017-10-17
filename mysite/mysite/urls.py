@@ -21,4 +21,6 @@ urlpatterns = [
 
     url(r'^$', include('personal.urls')),
 
+    url(r'^form/', include('personal.urls'))
+
 ]
