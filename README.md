@@ -1,14 +1,14 @@
 # DnDatabase
 Keeping track of DnD Items and Stuff
+
 **Contributors**
 - Lucas Hahn
 - Sean Flannery
 
-
-*Internal Structure*
+**Internal Structure**
 - Django 
 - MySQL db
 
-*Languages*
+**Languages**
 - Python
 - HTML/CSS
