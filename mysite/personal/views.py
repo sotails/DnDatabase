@@ -18,7 +18,7 @@ def form(request):
 			item_description3 =itform.cleaned_data['item_description']
 			obj = item(item_type=item_type1,item_name=item_name2,item_description=item_description3)
 			obj.save()
-			print(item.objects.all())
+			#print(item.objects.all())
 			return HttpResponseRedirect('..')
 
 	else:
