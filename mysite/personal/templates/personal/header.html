@@ -11,7 +11,7 @@
 
 <body class="body" style="background-color:#f6f6f6">
 <div class="container" style="position: absolute; top: 3%; right: 12%;">
-    <button type="button" class="btn btn-primary">Home</button>
+    <a href="/"><button type="button" class="btn btn-primary">Home</button></a>
     <div class="btn-group">
         <button type="button" class="btn btn-danger">Player</button>
         <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
@@ -19,9 +19,7 @@
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="/form">Item Form</a>
         </div>
     </div>
     <div class="btn-group">
@@ -31,9 +29,8 @@
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="/form">Item Form</a>
+            
         </div>
     </div>
     {% block content %}
