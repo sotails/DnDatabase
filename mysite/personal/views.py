@@ -11,15 +11,15 @@ def index(request):
 	
 def form(request):
 	if request.method == 'POST':
-		form = ItemForm(request.POST)
-		if form.is_valid():
-			item_type1 = form.cleaned_data['item_type']
-			item_name2 = form.cleaned_data['item_name']
-			item_description3 =form.cleaned_data['item_description']
+		itform = ItemForm(request.POST)
+		if itform.is_valid():
+			item_type1 = itform.cleaned_data['item_type']
+			item_name2 = itform.cleaned_data['item_name']
+			item_description3 =itform.cleaned_data['item_description']
 			obj = item(item_type=item_type1,item_name=item_name2,item_description=item_description3)
 			obj.save()
 			return HttpResponseRedirect('personal/home.html')
 	else:
-		form = ItemForm()
+		itform = ItemForm()
 
-	return render(request, 'personal/form.html',{'form': form})
+	return render(request, 'personal/form.html',{'form': itform})
