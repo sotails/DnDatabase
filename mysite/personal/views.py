@@ -18,8 +18,11 @@ def form(request):
 			item_description3 =itform.cleaned_data['item_description']
 			obj = item(item_type=item_type1,item_name=item_name2,item_description=item_description3)
 			obj.save()
-			return HttpResponseRedirect('personal/home.html')
+			print(item.objects.all())
+			return HttpResponseRedirect('..')
+
 	else:
 		itform = ItemForm()
+
 
 	return render(request, 'personal/form.html',{'form': itform})
