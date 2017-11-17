@@ -7,13 +7,15 @@
         <title>Create your Profile</title>
     </head>
     <body>
+      {{hello}}
     <h1></h1>
     <form action="/form/" method="post">
         {% csrf_token %}
         {{form }}
-        
+
         <input type="submit" value="Save">
     </form>
+
 
 
     </body>

@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from .forms import ItemForm
 
 from .models import item
+from django.http import JsonResponse
 # Create your views here.
 
 def index(request):
@@ -10,6 +11,9 @@ def index(request):
 
 	
 def form(request):
+	allObjects = item.objects.all().values('item_type','item_name','item_description')
+	hello = ({'allObjects': list(allObjects)})
+
 	if request.method == 'POST':
 		itform = ItemForm(request.POST)
 		if itform.is_valid():
@@ -18,11 +22,10 @@ def form(request):
 			item_description3 =itform.cleaned_data['item_description']
 			obj = item(item_type=item_type1,item_name=item_name2,item_description=item_description3)
 			obj.save()
-			#print(item.objects.all())
-			return HttpResponseRedirect('..')
+			
 
 	else:
 		itform = ItemForm()
 
 
-	return render(request, 'personal/form.html',{'form': itform})
+	return render(request, 'personal/form.html',{'form': itform ,'hello':hello})
