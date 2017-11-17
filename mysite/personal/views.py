@@ -30,3 +30,12 @@ def form(request):
 
 
 	return render(request, 'personal/form.html',{'form': itform ,'hello':hello})
+
+
+def simple_list(request):
+	queryset = Simple.objects.all()
+	table = SimpleTable(queryset)
+	return render(request, 'simple_list.html', {'table':table})
+
+
+
