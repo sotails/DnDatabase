@@ -9,10 +9,11 @@ from django.http import JsonResponse
 def index(request):
 	return render(request, 'personal/home.html')
 
-	
+
 def form(request):
-	allObjects = item.objects.all().values('item_type','item_name','item_description')
-	hello = ({'allObjects': list(allObjects)})
+	#allObjects = item.objects.all()#.values('item_type','item_name','item_description')
+	hello=(item.objects.all())
+	hello= set(hello)
 
 	if request.method == 'POST':
 		itform = ItemForm(request.POST)
@@ -22,7 +23,7 @@ def form(request):
 			item_description3 =itform.cleaned_data['item_description']
 			obj = item(item_type=item_type1,item_name=item_name2,item_description=item_description3)
 			obj.save()
-			
+
 
 	else:
 		itform = ItemForm()

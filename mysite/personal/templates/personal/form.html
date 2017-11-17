@@ -7,14 +7,21 @@
         <title>Create your Profile</title>
     </head>
     <body>
-      {{hello}}
-    <h1></h1>
+
+
     <form action="/form/" method="post">
         {% csrf_token %}
         {{form }}
 
         <input type="submit" value="Save">
     </form>
+    <div>
+    <table summary="Items">
+      <tr><th>Items</th><th>Name</th><th>Description</th>
+    {%for h in hello%}
+     <tr><td>{{h.item_type}}</td><td>{{h.item_name}}</td><td>{{h.item_description}}</td></tr>
+    {%endfor%}
+    </div>
 
 
 
