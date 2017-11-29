@@ -18,7 +18,15 @@ def form(request):
 	if request.method == 'POST':
 		itform = ItemForm(request.POST)
 		if itform.is_valid():
-			item_type1 = itform.cleaned_data['item_type']
+			item_type1 ="item"
+			type = itform.cleaned_data['item_type']
+			print(type)
+			if type == "1":
+				item_type1 = "Item"
+			elif type == "2":
+				item_type1 = "Spell"
+			else:
+				item_type1 = "Weapon"
 			item_name2 = itform.cleaned_data['item_name']
 			item_description3 =itform.cleaned_data['item_description']
 			obj = item(item_type=item_type1,item_name=item_name2,item_description=item_description3)
