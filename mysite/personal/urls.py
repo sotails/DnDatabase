@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from . import views
-urlpatterns = [    
+urlpatterns = [
     url(r'^$', views.index, name='index'),
-    
+
     url(r'^form', views.form, name='form'),
+
+    url(r'^UserForm', views.UserForm, name='UserForm'),
 ]

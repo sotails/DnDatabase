@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import ItemForm
+from django.contrib.auth.models import User
 
 from .models import item
 from django.http import JsonResponse
@@ -40,10 +41,17 @@ def form(request):
 	return render(request, 'personal/form.html',{'form': itform ,'hello':hello})
 
 
-def simple_list(request):
-	queryset = Simple.objects.all()
-	table = SimpleTable(queryset)
-	return render(request, 'simple_list.html', {'table':table})
+def UserForm(request):
+	if request.method == 'POST':
+		Uf = UserForm(request.POST)
+		if Uf.is_valid():
+			user = User.objects.create_user(Uf.cleaned_data['uname'],Uf.cleaned_data['password'],Uf.cleaned_data['email'],Uf.cleaned_data['fname'],Uf.cleaned_data['lname'])
+			user.save()
+	else:
+		Uf = UserForm()
+	return render(request, 'personal/UserForm.html',{'form': Uf})
 
-
-
+#def simple_list(request):
+	#queryset = Simple.objects.all()
+	#table = SimpleTable(queryset)
+#	return render(request, 'simple_list.html', {'table':table})
