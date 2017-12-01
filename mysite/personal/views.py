@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .forms import ItemForm
+from .forms import *
 from django.contrib.auth.models import User
 
-from .models import item
+from .models import *
 from django.http import JsonResponse
+from django.db import IntegrityError
 # Create your views here.
 
 def index(request):
@@ -41,15 +42,24 @@ def form(request):
 	return render(request, 'personal/form.html',{'form': itform ,'hello':hello})
 
 
-def UserForm(request):
+def Uform(request):
 	if request.method == 'POST':
 		Uf = UserForm(request.POST)
 		if Uf.is_valid():
-			user = User.objects.create_user(Uf.cleaned_data['uname'],Uf.cleaned_data['password'],Uf.cleaned_data['email'],Uf.cleaned_data['fname'],Uf.cleaned_data['lname'])
-			user.save()
+			try:
+				user = User.objects.create_user(Uf.cleaned_data['first_name'],Uf.cleaned_data['password'],Uf.cleaned_data['email'])
+				user.last_name =Uf.cleaned_data['last_name']
+				user.save()
+			except IntegrityError:
+				return render(request, 'personal/UForm.html',{'form': Uf})
+
+
+
 	else:
 		Uf = UserForm()
-	return render(request, 'personal/UserForm.html',{'form': Uf})
+		return render(request, 'personal/UForm.html',{'form': Uf})
+	return render(request, 'personal/home.html')
+
 
 #def simple_list(request):
 	#queryset = Simple.objects.all()
