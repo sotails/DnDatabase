@@ -21,4 +21,6 @@ urlpatterns = [
     url(r'^form', views.form, name='form'),
 
     url(r'^UserFormPage', views.Uform, name='Uform'),
+
+    url(r'^Login',views.Lform,name ='Lform'),
 ]

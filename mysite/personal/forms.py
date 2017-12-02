@@ -7,7 +7,11 @@ class ItemForm(forms.Form):
 	item_description = forms.CharField(label='description',min_length=1)
 
 class UserForm(forms.Form):
-	first_name = forms.CharField(label='Firstname', max_length=200)
+	username = forms.CharField(label='Username', max_length=200)
 	last_name = forms.CharField(label='Lastname', max_length=200)
 	email = forms.CharField(label='Email', max_length=200)
+	password = forms.CharField(label='Password', max_length=200)
+
+class LoginForm(forms.Form):
+	username = forms.CharField(label='Username', max_length=200)
 	password = forms.CharField(label='Password', max_length=200)

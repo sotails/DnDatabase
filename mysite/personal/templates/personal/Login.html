@@ -1,0 +1,19 @@
+{% extends "personal/header.html" %}
+
+{% block content %}
+    {% include "personal/includes/bootstrap.html" %}
+<html>
+<head>
+<title>Login</title>
+</head>
+<body>
+  <form action="/Login" method="post">
+      {% csrf_token %}
+      {{form}}
+
+      <input type="submit" value="Save">
+  </form>
+</body>
+</body>
+</html>
+{% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import *
 from django.contrib.auth.models import User
-
+from django.contrib.auth import authenticate, login
 from .models import *
 from django.http import JsonResponse
 from django.db import IntegrityError
@@ -47,14 +47,11 @@ def Uform(request):
 		Uf = UserForm(request.POST)
 		if Uf.is_valid():
 			try:
-				user = User.objects.create_user(Uf.cleaned_data['first_name'],Uf.cleaned_data['password'],Uf.cleaned_data['email'])
+				user = User.objects.create_user(Uf.cleaned_data['username'],Uf.cleaned_data['email'],Uf.cleaned_data['password'])
 				user.last_name =Uf.cleaned_data['last_name']
 				user.save()
 			except IntegrityError:
 				return render(request, 'personal/UForm.html',{'form': Uf})
-
-
-
 	else:
 		Uf = UserForm()
 		return render(request, 'personal/UForm.html',{'form': Uf})
@@ -65,3 +62,19 @@ def Uform(request):
 	#queryset = Simple.objects.all()
 	#table = SimpleTable(queryset)
 #	return render(request, 'simple_list.html', {'table':table})
+
+def Lform(request):
+	if request.method =='POST':
+		lf = LoginForm(request.POST)
+		if lf.is_valid():
+			username = lf.cleaned_data['username']
+			password = lf.cleaned_data['password']
+			user = authenticate(request, username=username, password=password)
+			if user is not None:
+				login(request, user)
+				return render(request, 'personal/home.html')
+			else:
+				return render(request, 'personal/Login.html',{'form': lf})
+	else:
+		lf = LoginForm()
+		return render(request, 'personal/Login.html',{'form': lf})
