@@ -14,6 +14,12 @@ def index(request):
 
 def form(request):
 	#allObjects = item.objects.all()#.values('item_type','item_name','item_description')
+	username = None
+	hello =None
+	if not request.user.is_authenticated():
+		lf= LoginForm()
+		return render(request, 'personal/Login.html',{'form':lf})
+	username =request.user.username
 	hello=(item.objects.all())
 	hello= set(hello)
 
