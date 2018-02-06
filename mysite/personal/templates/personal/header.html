@@ -9,7 +9,6 @@
 </head>
 
 
-
 <body class="body" style="background-color:#f6f6f6" background="static/background/back.jpg">
 
 <div class="container" style="position: absolute; top: 3%; right: 12%;">
@@ -22,6 +21,8 @@
         </button>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/Login">Login</a>
+						<a class="dropdown-item" href="/logout">Logout</a>
+
 						<a class="dropdown-item" href="/UserFormPage">Sign-up</a>
         </div>
     </div>
@@ -41,6 +42,8 @@
 
     {% block content %}
 	{% endblock %}
+
+	User: {{ request.user.username }}
 
 </div>
 
